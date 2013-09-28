@@ -1,12 +1,15 @@
 site :opscode
 
 cookbook 'apache2'
+cookbook 'php'
 cookbook 'apt'
 cookbook 'build-essential'
-cookbook 'dotdeb', git: 'git://github.com/homemade/chef-dotdeb.git'
 cookbook 'memcached'
 cookbook 'mysql'
 cookbook 'openssl'
-cookbook 'php'
 cookbook 'postfix'
+cookbook 'npm'
+cookbook 'chef-php-extra', git: 'git://github.com/inviqa/chef-php-extra'
+cookbook 'redis', git: 'git://github.com/miah/chef-redis'
+cookbook 'beanstalkd', git: 'git://github.com/escapestudios/chef-beanstalkd'
 cookbook 'laravel', path: './site-cookbooks/laravel'

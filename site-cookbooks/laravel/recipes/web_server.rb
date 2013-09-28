@@ -12,21 +12,18 @@ include_recipe "apache2::mod_php5"
 include_recipe "apache2::mod_rewrite"
 include_recipe "apache2::mod_ssl"
 
-# Install PHP
-include_recipe "dotdeb"
-include_recipe "dotdeb::php54"
+# Install PHP 5.5
+apt_repository "php55" do
+	uri "http://ppa.launchpad.net/ondrej/php5/ubuntu"
+	distribution node['lsb']['codename']
+	components ["main"]
+	keyserver "keyserver.ubuntu.com"
+	key "E5267A6C"
+end
 include_recipe "php"
 
-# Install PHP5 packages
-node['laravel']['php_packages'].each do |a_package|
-  package a_package
-end
-
-# Fix deprecated comments in PHP ini files by replacing '#' with ';'
-#bash "fix-phpcomments" do
-#  code "find /etc/php5/cli/conf.d/ -name '*.ini' -exec sed -i -re 's/^(\\s*)#(.*)/\\1;\\2/g' {} \\;"
-#  notifies :restart, resources("service[apache2]"), :delayed
-#end
+# Install xdebug
+include_recipe "chef-php-extra::xdebug"
 
 # Install Composer
 bash "composer" do
