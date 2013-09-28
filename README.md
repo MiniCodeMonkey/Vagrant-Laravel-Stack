@@ -1,11 +1,11 @@
-# Vagrant LAMP stack
-A dead-simple LAMP stack without any bells and whistles for your basic Linux/Apache/MySQL/PHP install, using Chef Solo for provisioning.
+# Vagrant Laravel Stack
+A Vagrant stack designed for Laravel 4 development and deployment
 
-The idea is for developers to fork this and add additional software and configuration that suits the needs of their project.
+***Authors note:*** *I've been wanting to do a Laravel-specific Vagrant stack for a while, and when Taylor Otwell [tweeted out](https://twitter.com/taylorotwell/status/383722109521776640) that he was looking for such a thing, I decided to build it out based on [his requirements](http://paste.laravel.com/V3q).*
 
 ## Requirements
 * [VirtualBox](https://www.virtualbox.org)
-* [Vagrant 1.2.x](http://vagrantup.com)
+* [Vagrant](http://vagrantup.com)
 * [Berkshelf](http://berkshelf.com)
 	* `gem install berkshelf`
 * [vagrant-berkshelf](https://github.com/riotgames/vagrant-berkshelf)
@@ -13,12 +13,10 @@ The idea is for developers to fork this and add additional software and configur
 * [vagrant-hostmanager](https://github.com/smdahlen/vagrant-hostmanager)
 	* `vagrant plugin install vagrant-hostmanager`
 
-**Note:** Vagrant 1.0.x compatible stack [is also available](https://github.com/MiniCodeMonkey/Vagrant-LAMP-Stack/tree/Vagrant-1.0.x).
-
 ## Installation
 Clone this repository
 
-    $ git clone git@github.com:MiniCodeMonkey/Vagrant-LAMP-Stack.git
+    $ git clone git@github.com:MiniCodeMonkey/Vagrant-Laravel-Stack.git
 
 Place your website in the `public_html` folder
 
@@ -32,15 +30,10 @@ You can now access your project at [http://projectname.local](http://projectname
 
 ![Screenshot of up-and-running server](http://i.imgur.com/TP1i9Zd.png)
 
-### Database dump import
-Chef will automatically try to import the database dump specified by the filename set in the `:db_dump` option of your Vagrantfile.
-
-If you are using the default configuration, just create a `dump.sql` file in the root directory with your table structure and/or content and it will be imported automatically when you run `vagrant up`.
-
 ## Installed software
 * Apache 2
 * MySQL
-* PHP 5.4 (with mysql, curl, mcrypt, memcached, gd)
+* PHP 5.5 (with mysql, curl, mcrypt, memcached, gd)
 * memcached
 * postfix
 * vim, git, screen, curl, composer

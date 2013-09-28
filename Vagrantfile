@@ -25,14 +25,14 @@ Vagrant.configure("2") do |config|
 
   # Enable and configure chef solo
   config.vm.provision :chef_solo do |chef|
-    chef.add_recipe "app::packages"
-    chef.add_recipe "app::web_server"
-    chef.add_recipe "app::vhost"
+    chef.add_recipe "laravel::packages"
+    chef.add_recipe "laravel::web_server"
+    chef.add_recipe "laravel::vhost"
     chef.add_recipe "memcached"
-    chef.add_recipe "app::db"
+    chef.add_recipe "laravel::db"
     chef.add_recipe "postfix"
     chef.json = {
-      :app => {
+      :laravel => {
         # Project name
         :name           => "projectname",
 

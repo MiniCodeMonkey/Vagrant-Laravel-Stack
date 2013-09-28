@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: app
+# Cookbook Name:: laravel
 # Recipe:: web_server
 #
 # Copyright 2013, Mathias Hansen
@@ -18,15 +18,15 @@ include_recipe "dotdeb::php54"
 include_recipe "php"
 
 # Install PHP5 packages
-node['app']['php_packages'].each do |a_package|
+node['laravel']['php_packages'].each do |a_package|
   package a_package
 end
 
 # Fix deprecated comments in PHP ini files by replacing '#' with ';'
-bash "fix-phpcomments" do
-  code "find /etc/php5/cli/conf.d/ -name '*.ini' -exec sed -i -re 's/^(\\s*)#(.*)/\\1;\\2/g' {} \\;"
-  notifies :restart, resources("service[apache2]"), :delayed
-end
+#bash "fix-phpcomments" do
+#  code "find /etc/php5/cli/conf.d/ -name '*.ini' -exec sed -i -re 's/^(\\s*)#(.*)/\\1;\\2/g' {} \\;"
+#  notifies :restart, resources("service[apache2]"), :delayed
+#end
 
 # Install Composer
 bash "composer" do
