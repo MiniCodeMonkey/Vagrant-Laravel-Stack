@@ -24,7 +24,7 @@ if ($m->addServer('localhost', 11211)) {
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Vagrant LAMP stack</title>
+	<title>Vagrant Laravel stack</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
@@ -162,7 +162,7 @@ if ($m->addServer('localhost', 11211)) {
 
 	<div id="footer">
 		<div class="container">
-			<p class="muted credit"><a href="https://github.com/MiniCodeMonkey/Vagrant-LAMP-Stack" target="_blank">Vagrant LAMP Stack</a> by <a href="https://github.com/MiniCodeMonkey" traget="_blank">Code Monkey</a>.</p>
+			<p class="muted credit"><a href="https://github.com/MiniCodeMonkey/Vagrant-Laravel-Stack" target="_blank">Vagrant Laravel Stack</a> by <a href="https://github.com/MiniCodeMonkey" traget="_blank">Code Monkey</a>.</p>
 		</div>
 	</div>
 </body>

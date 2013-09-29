@@ -13,7 +13,22 @@ node['laravel']['packages'].each do |a_package|
   package a_package
 end
 
-# Install Redis Commander
-npm_package "redis-commander" do
+# Make sure node and npm is up to date
+package "node" do
 	action :install
-end 
+	notifies :install, 'package[npm]'
+end
+
+package "npm" do
+	action :nothing
+	notifies :run, 'bash[npm-packages]'
+end
+
+# Install Redis Commander & Grunt
+bash "npm-packages" do
+  action :nothing
+  code <<-EOH
+    npm install -g redis-commander
+    npm install -g grunt-cli
+  EOH
+end

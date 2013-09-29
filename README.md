@@ -18,34 +18,54 @@ Clone this repository
 
     $ git clone git@github.com:MiniCodeMonkey/Vagrant-Laravel-Stack.git
 
-Place your website in the `public_html` folder
-
-## Usage
-Start the VM
+You can now start the Virtual Machine and make sure that everything works.
 
 	$ cd Vagrant-LAMP-Stack
 	$ vagrant up
 
-You can now access your project at [http://projectname.local](http://projectname.local)
+Try to access your project at [http://projectname.local](http://projectname.local)
 
 ![Screenshot of up-and-running server](http://i.imgur.com/TP1i9Zd.png)
+
+Last step would be to remove the `projectname` directory and install Laravel 4 instead.
+
+	* rm -rf projectname
+	* composer create-project laravel/laravel projectname --prefer-dist
 
 ## Installed software
 * Apache 2
 * MySQL
-* PHP 5.5 (with mysql, curl, mcrypt, memcached, gd)
+* PostgreSQL
+* PHP 5.5 (with apcu, mysql, curl, mcrypt, memcached, gd)
 * memcached
-* postfix
-* vim, git, screen, curl, composer
+* Redis
+* Beanstalkd
+* Postfix
+* XDebug
+* Grunt
+* composer
+* curl
+* vim, git, screen
 
 ## Default credentials
 ### MySQL
 * Username: root
 * Password: root
-* Host: localhost
 * Port: 3306
 
-**Note:** Remote MySQL access is enabled by default, so you can access the MySQL database using your favorite MySQL client with the above credentials (and using e.g. *projectname.local* as hostname).
+### PostgreSQL
+* Username: root
+* Password: root
+* Port: 5432
+
+**Note:** Remote database access is enabled by default, so you can access the MySQL or PostgreSQL database using your favorite client with the above credentials (and using e.g. *projectname.local* as hostname).
+
+
+### Redis
+* Port: 6379
+
+### Beanstalkd
+* Port: 11300
 
 ### Memcached
 * Port: 11211

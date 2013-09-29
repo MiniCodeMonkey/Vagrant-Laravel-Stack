@@ -5,13 +5,6 @@
 # Copyright 2013, Mathias Hansen
 #
 
-# Install Apache
-include_recipe "openssl"
-include_recipe "apache2"
-include_recipe "apache2::mod_php5"
-include_recipe "apache2::mod_rewrite"
-include_recipe "apache2::mod_ssl"
-
 # Install PHP 5.5
 apt_repository "php55" do
 	uri "http://ppa.launchpad.net/ondrej/php5/ubuntu"
@@ -21,6 +14,13 @@ apt_repository "php55" do
 	key "E5267A6C"
 end
 include_recipe "php"
+
+# Install Apache
+include_recipe "openssl"
+include_recipe "apache2"
+include_recipe "apache2::mod_php5"
+include_recipe "apache2::mod_rewrite"
+include_recipe "apache2::mod_ssl"
 
 # Install xdebug
 include_recipe "chef-php-extra::xdebug"

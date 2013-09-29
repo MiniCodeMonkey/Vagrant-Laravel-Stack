@@ -1,10 +1,10 @@
-name              "app"
+name              "laravel"
 maintainer        "Mathias Hansen"
 maintainer_email  "me@codemonkey.io"
-description       "Main entry point for installing and configuring a dead-simple LAMP stack"
+description       "Main entry point for installing and configuring a Laravel 4 stack"
 version           "1.0.0"
 
-recipe "app", "Main entry point for installing and configuring a dead-simple LAMP stack"
+recipe "laravel", "Main entry point for installing and configuring a Laravel 4 stack"
 
 depends "apache"
 depends "dotdeb"
