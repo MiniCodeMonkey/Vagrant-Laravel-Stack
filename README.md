@@ -1,7 +1,9 @@
 **WARNING** This project is not complete yet.
 
 # Vagrant Laravel Stack
-A Vagrant stack designed for Laravel 4 development and deployment
+A Vagrant stack designed for Laravel 4 development and deployment.
+
+`Chef` is used for provisioning and `Berkshelf` is used to manage cookbooks.
 
 ***Authors note:*** *I've been wanting to do a Laravel-specific Vagrant stack for a while, and when Taylor Otwell [tweeted out](https://twitter.com/taylorotwell/status/383722109521776640) that he was looking for such a thing, I decided to build it out based on [his requirements](http://paste.laravel.com/V3q).*
 
@@ -16,23 +18,27 @@ A Vagrant stack designed for Laravel 4 development and deployment
 	* `vagrant plugin install vagrant-hostmanager`
 
 ## Installation
-Clone this repository
+First, install Laravel 4 in to a local directory on your machine.
 
-    $ git clone git@github.com:MiniCodeMonkey/Vagrant-Laravel-Stack.git
+	$ composer create-project laravel/laravel projectname --prefer-dist
 
-You can now start the Virtual Machine and make sure that everything works.
+All you need to do now, in order to run your Laravel installation using Vagrant is to place the `Vagrantfile` and `Berksfile` from this repository in the root of your Laravel installation
 
-	$ cd Vagrant-LAMP-Stack
+	$ cd projectname
+	$ curl -O https://raw.github.com/MiniCodeMonkey/Vagrant-Laravel-Stack/master/Vagrantfile
+	$ curl -O https://raw.github.com/MiniCodeMonkey/Vagrant-Laravel-Stack/master/Berksfile
+
+Optionally, you can configure the `Vagrantfile` to specify the project name or customize the installed packages or modules.
+
+	$ vim Vagrantfile
+
+You can now start the Virtual Machine and initialize the provisioning process.
+
 	$ vagrant up
 
-Try to access your project at [http://projectname.local](http://projectname.local)
+The first run may take up to 15 minutes to complete, after that you can access your project at [http://projectname.local](http://projectname.local)
 
 ![Screenshot of up-and-running server](http://i.imgur.com/TP1i9Zd.png)
-
-Last step would be to remove the `projectname` directory and install Laravel 4 instead.
-
-	* rm -rf projectname
-	* composer create-project laravel/laravel projectname --prefer-dist
 
 ## Installed software
 * Apache 2

@@ -1,8 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-#################################
-# General project configuration #
+# General project settings
 #################################
 
 # IP Address for the host only network, change it to anything you like
@@ -11,6 +10,13 @@ ip_address = "172.22.22.22"
 
 # The project name is base for directories, hostname and alike
 project_name = "projectname"
+
+# MySQL and PostgreSQL password - feel free to change it to something
+# more secure
+database_password = "root"
+
+# Vagrant configuration
+#################################
 
 Vagrant.configure("2") do |config|
     # Enable Berkshelf support
@@ -23,22 +29,23 @@ Vagrant.configure("2") do |config|
     # Set share folder
     config.vm.synced_folder "./" , "/var/www/" + project_name + "/"
 
-    # Use hostonly network with a static IP Address
-    # and enable hostmanager
+    # Use hostonly network with a static IP Address and enable
+    # hostmanager so we can have a custom domain for the server
+    # by modifying the host machines hosts file
     config.hostmanager.enabled = true
     config.hostmanager.manage_host = true
     config.vm.define project_name do |node|
         node.vm.hostname = project_name + ".local"
         node.vm.network :private_network, ip: ip_address
-        node.hostmanager.aliases = ["www." + project_name + ".local"]
+        node.hostmanager.aliases = [ "www." + project_name + ".local" ]
     end
     config.vm.provision :hostmanager
 
     # Make sure that the newest version of Chef have been installed
-    config.vm.provision :shell, :inline => 'apt-get update -qq && apt-get install make ruby1.9.1-dev --no-upgrade --yes'
+    config.vm.provision :shell, :inline => "apt-get update -qq && apt-get install make ruby1.9.1-dev --no-upgrade --yes"
     config.vm.provision :shell, :inline => "gem install chef --version 11.6.0 --no-rdoc --no-ri --conservative"
 
-    # Enable and configure chef solo
+    # Povision using Chef Solo
     config.vm.provision :chef_solo do |chef|
         chef.add_recipe "laravel::packages"
         chef.add_recipe "laravel::web_server"
@@ -66,40 +73,52 @@ Vagrant.configure("2") do |config|
                 :docroot        => "/var/www/" + project_name + "/" + project_name + "/public",
 
                 # General packages
-                :packages       => %w{ vim git screen curl }
+                :packages       => %w{ vim git screen curl },
+
+                # npm packages that should be installed
+                :npm_packages   => %w{ redis-commander grunt-cli }
+            },
+            :apache => {
+                :default_modules         => %w{ status alias auth_basic authn_file autoindex dir env mime negotiation setenvif rewrite ssl }
+            },
+            :npm => {
+                :version                 => "1.3.11"
             },
             :xdebug => {
                 :cli_color               => 1,
                 :scream                  => 0,
-                :remote_enable           => 'On',
+                :remote_enable           => "On",
                 :remote_autostart        => 0,
-                :remote_mode             => 'req',
+                :remote_mode             => "req",
                 :remote_connect_back     => 1,
-                :idekey                  => 'macgdbp',
-                :file_link_format        => 'txmt://open?url=file://%f&line=%1',
+                :idekey                  => "macgdbp",
+                :file_link_format        => "txmt://open?url=file://%f&line=%1",
                 :profiler_enable_trigger => 0,
                 :profiler_enable         => 0,
-                :profiler_output_dir     => '/tmp/cachegrind'
+                :profiler_output_dir     => "/tmp/cachegrind"
             },
             :php => {
-                # Add as many packages as you wish
-                :packages                => %w{ php5 php5-dev php5-cli php-pear php5-apcu php5-mysql php5-curl php5-mcrypt php5-memcached php5-gd }
+                # Customize PHP modules here
+                :packages                => %w{ php5 php5-dev php5-cli php-pear php5-apcu php5-mysql php5-curl php5-mcrypt php5-memcached php5-gd php5-json }
+            },
+            :apache => {
+                :package                 => "apache2.2"
             },
             :beanstalkd => {
                 :start_during_boot       => true
             },
             :mysql => {
-                # You can change the password to something more secure
-                :server_root_password    => 'root',
-                :server_repl_password    => 'root',
-                :server_debian_password  => 'root',
+                # Feel free to change the password to something more secure
+                :server_root_password    => database_password,
+                :server_repl_password    => database_password,
+                :server_debian_password  => database_password,
                 :bind_address            => ip_address,
                 :allow_remote_root       => true
             },
             :postgresql => {
                 :listen_addresses        => ip_address,
                 :password => {
-                    :postgres            => 'root'
+                    :postgres            => database_password
                 }
             }
         }
