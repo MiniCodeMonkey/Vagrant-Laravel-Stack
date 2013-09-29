@@ -1,3 +1,5 @@
+**WARNING** This project is not complete yet.
+
 # Vagrant Laravel Stack
 A Vagrant stack designed for Laravel 4 development and deployment
 
