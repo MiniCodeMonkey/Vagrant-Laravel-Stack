@@ -38,8 +38,6 @@ You can now start the Virtual Machine and initialize the provisioning process.
 
 The first run may take up to 15 minutes to complete, after that you can access your project at [http://projectname.local](http://projectname.local)
 
-![Screenshot of up-and-running server](http://i.imgur.com/TP1i9Zd.png)
-
 ## Configuration
 The stack is designed in such a way that it is very easy to configure.
 Just update the `Vagrantfile` to change installed npm packages, apt packages, php modules, etc.
