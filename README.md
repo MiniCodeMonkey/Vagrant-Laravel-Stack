@@ -80,6 +80,7 @@ Just update the `Vagrantfile` to change installed npm packages, apt packages, ph
 * memcached
 * Redis
 * Beanstalkd
+* Beanstalk Console
 * Postfix
 * XDebug
 * Grunt
