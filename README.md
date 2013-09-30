@@ -91,12 +91,12 @@ Just update the `Vagrantfile` to change installed npm packages, apt packages, ph
 ## Default credentials
 ### MySQL
 * Username: root
-* Password: root
+* Password: laravel
 * Port: 3306
 
 ### PostgreSQL
-* Username: root
-* Password: root
+* Username: postgres
+* Password: laravel
 * Port: 5432
 
 **Note:** Remote database access is enabled by default, so you can access the MySQL or PostgreSQL database using your favorite client with the above credentials (and using e.g. *projectname.local* as hostname).

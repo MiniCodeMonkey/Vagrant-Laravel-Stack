@@ -13,7 +13,7 @@ project_name = "projectname"
 
 # MySQL and PostgreSQL password - feel free to change it to something
 # more secure
-database_password = "root"
+database_password = "laravel"
 
 # Vagrant configuration
 #################################
@@ -56,7 +56,6 @@ Vagrant.configure("2") do |config|
         chef.add_recipe "beanstalk_console"
         chef.add_recipe "laravel::db"
         chef.add_recipe "postgresql::server"
-        chef.add_recipe "postgresql::client"
         chef.add_recipe "postfix"
         chef.json = {
             :laravel => {
@@ -119,7 +118,9 @@ Vagrant.configure("2") do |config|
             :postgresql => {
                 :listen_addresses        => ip_address,
                 :password => {
-                    :postgres            => database_password
+                    # A new password hash can be generated using
+                    # echo -n 'laravel''postgres' | openssl md5 | sed -e 's/.* /md5/'
+                    :postgres            => "a05ca1b634213a1e44d6d84c3c987489" # md5 hash of "laravel"
                 }
             }
         }
