@@ -116,12 +116,21 @@ Vagrant.configure("2") do |config|
                 :allow_remote_root       => true
             },
             :postgresql => {
-                :listen_addresses        => ip_address,
-                :password => {
-                    # A new password hash can be generated using
-                    # echo -n 'laravel''postgres' | openssl md5 | sed -e 's/.* /md5/'
-                    :postgres            => "a05ca1b634213a1e44d6d84c3c987489" # md5 hash of "laravel"
-                }
+                :users => [{
+                    :username            => "root",
+                    :password            => database_password,
+                    :superuser           => true,
+                    :createdb            => true,
+                    :login               => true
+                }],
+                :listen_addresses        => "*",
+                :pg_hba => [ # Make sure we have remote access
+                    { :type => "local", :db => "all", :user => "postgres", :addr => "",             :method => "peer" },
+                    { :type => "local", :db => "all", :user => "all",      :addr => "",             :method => "peer" },
+                    { :type => "host",  :db => "all", :user => "all",      :addr => "127.0.0.1/32", :method => "md5" },
+                    { :type => "host",  :db => "all", :user => "all",      :addr => "::1/128",      :method => "md5" },
+                    { :type => "host",  :db => "all", :user => "all",      :addr => "0.0.0.0/0",    :method => "md5" }
+                ]
             }
         }
     end

@@ -95,7 +95,7 @@ Just update the `Vagrantfile` to change installed npm packages, apt packages, ph
 * Port: 3306
 
 ### PostgreSQL
-* Username: postgres
+* Username: root
 * Password: laravel
 * Port: 5432
 
