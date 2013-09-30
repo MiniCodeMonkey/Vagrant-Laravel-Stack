@@ -101,9 +101,6 @@ Vagrant.configure("2") do |config|
                 # Customize PHP modules here
                 :packages                => %w{ php5 php5-dev php5-cli php-pear php5-apcu php5-mysql php5-curl php5-mcrypt php5-memcached php5-gd php5-json }
             },
-            :apache => {
-                :package                 => "apache2.2"
-            },
             :beanstalkd => {
                 :start_during_boot       => true
             },

@@ -1,6 +1,5 @@
 site :opscode
 
-cookbook 'apache2'
 cookbook 'php'
 cookbook 'apt'
 cookbook 'build-essential'
@@ -13,4 +12,5 @@ cookbook 'chef-php-extra', git: 'git://github.com/inviqa/chef-php-extra'
 cookbook 'redis', git: 'git://github.com/miah/chef-redis'
 cookbook 'beanstalkd', git: 'git://github.com/escapestudios/chef-beanstalkd'
 cookbook 'npm', git: 'git://github.com/balbeko/chef-npm'
+cookbook 'apache2', path: '../apache24/'
 cookbook 'laravel', path: '../chef-laravel/'
