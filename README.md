@@ -1,6 +1,7 @@
-**WARNING** This project is not complete yet.
-
 # Vagrant Laravel Stack
+Just dump the `Vagrantfile` and `Berksfile` in your Laravel project and you're good to go!
+
+## Description
 A Vagrant stack designed for Laravel 4 development and deployment.
 
 `Chef` is used for provisioning and `Berkshelf` is used to manage cookbooks.
@@ -32,21 +33,50 @@ Optionally, you can configure the `Vagrantfile` to specify the project name or c
 
 	$ vim Vagrantfile
 
+Your directory structure should look something like this:
+
+```
+├── CONTRIBUTING.md
+├── Berksfile - Your new Berksfile
+├── Dirtfile.json
+├── README.md
+├── Vagrantfile - Your new Vagrantfile
+├── app
+   ├── commands
+   ├── config
+   ├── controllers
+   ├── database
+   ├── lang
+   ├── models
+   ├── start
+   ├── storage
+   ├── tests
+   ├── views
+├── artisan
+├── bootstrap
+├── composer.json
+├── public
+├── server.php
+```
+
 You can now start the Virtual Machine and initialize the provisioning process.
 
 	$ vagrant up
 
-The first run may take up to 15 minutes to complete, after that you can access your project at [http://projectname.local](http://projectname.local)
+The first run may take 8-10 minutes to complete, so you might want to go grab a cup of coffee at this point.
+
+After the provisioning has completed, you can access your project at [http://projectname.local](http://projectname.local)
 
 ## Configuration
 The stack is designed in such a way that it is very easy to configure.
 Just update the `Vagrantfile` to change installed npm packages, apt packages, php modules, etc.
 
 ## Installed software
-* Apache 2
+* Ubuntu Precise base box (Should work with other operating systems with few or no changes)
+* Apache **2.4**
 * MySQL
 * PostgreSQL
-* PHP 5.5 (with apcu, mysql, curl, mcrypt, memcached, gd)
+* PHP **5.5** (with apcu, mysql, curl, mcrypt, memcached, gd)
 * memcached
 * Redis
 * Beanstalkd
@@ -76,6 +106,8 @@ Just update the `Vagrantfile` to change installed npm packages, apt packages, ph
 
 ### Beanstalkd
 * Port: 11300
+
+Beanstalk Console can be accessed on the `/beanstalk` alias, e.g. [http://projectname.local/beanstalk](http://projectname.local/beanstalk)
 
 ### Memcached
 * Port: 11211

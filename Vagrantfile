@@ -53,6 +53,7 @@ Vagrant.configure("2") do |config|
         chef.add_recipe "memcached"
         chef.add_recipe "redis"
         chef.add_recipe "beanstalkd"
+        chef.add_recipe "beanstalk_console"
         chef.add_recipe "laravel::db"
         chef.add_recipe "postgresql::server"
         chef.add_recipe "postgresql::client"
@@ -67,10 +68,10 @@ Vagrant.configure("2") do |config|
 
                 # Server name and alias(es) for Apache vhost
                 :server_name    => project_name + ".local",
-                :server_aliases => "www." + project_name + ".local",
+                :server_aliases =>  [ "www." + project_name + ".local" ],
 
                 # Document root for Apache vhost
-                :docroot        => "/var/www/" + project_name + "/" + project_name + "/public",
+                :docroot        => "/var/www/" + project_name + "/public",
 
                 # General packages
                 :packages       => %w{ vim git screen curl },
@@ -99,7 +100,10 @@ Vagrant.configure("2") do |config|
             },
             :php => {
                 # Customize PHP modules here
-                :packages                => %w{ php5 php5-dev php5-cli php-pear php5-apcu php5-mysql php5-curl php5-mcrypt php5-memcached php5-gd php5-json }
+                :packages                => %w{ php5 php5-dev php5-cli php-pear php5-apcu php5-mysql php5-curl php5-mcrypt php5-memcached php5-gd php5-json },
+
+                # It is necessary to specify a custom conf dir as we are using Apache 2.4
+                :ext_conf_dir            => "/etc/php5/mods-available"
             },
             :beanstalkd => {
                 :start_during_boot       => true
