@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
     config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
     # Set share folder
-    config.vm.synced_folder "./" , "/var/www/" + project_name + "/"
+    config.vm.synced_folder "./" , "/var/www/" + project_name + "/", :mount_options => ["dmode=777", "fmode=666"]
 
     # Use hostonly network with a static IP Address and enable
     # hostmanager so we can have a custom domain for the server
