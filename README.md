@@ -112,3 +112,6 @@ Beanstalk Console can be accessed on the `/beanstalk` alias, e.g. [http://projec
 
 ### Memcached
 * Port: 11211
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/MiniCodeMonkey/vagrant-laravel-stack/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
