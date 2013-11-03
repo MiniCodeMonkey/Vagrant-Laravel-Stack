@@ -87,6 +87,7 @@ Just update the `Vagrantfile` to change installed npm packages, apt packages, ph
 * composer
 * curl
 * vim, git, screen
+* phpunit
 
 ## Default credentials
 ### MySQL
