@@ -57,6 +57,7 @@ Vagrant.configure("2") do |config|
         chef.add_recipe "laravel::db"
         chef.add_recipe "postgresql::server"
         chef.add_recipe "postfix"
+        chef.add_recipe "phpunit"
         chef.json = {
             :laravel => {
                 # Project name
@@ -106,6 +107,9 @@ Vagrant.configure("2") do |config|
             },
             :beanstalkd => {
                 :start_during_boot       => true
+            },
+            :phpunit => {
+                :install_method          => 'composer'
             },
             :mysql => {
                 # Feel free to change the password to something more secure
