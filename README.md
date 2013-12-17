@@ -26,8 +26,7 @@ First, install Laravel 4 in to a local directory on your machine.
 All you need to do now, in order to run your Laravel installation using Vagrant is to place the `Vagrantfile` and `Berksfile` from this repository in the root of your Laravel installation
 
 	$ cd projectname
-	$ curl -O https://raw.github.com/MiniCodeMonkey/Vagrant-Laravel-Stack/master/Vagrantfile
-	$ curl -O https://raw.github.com/MiniCodeMonkey/Vagrant-Laravel-Stack/master/Berksfile
+	$ curl -O https://raw.github.com/MiniCodeMonkey/Vagrant-Laravel-Stack/master/\{Vagrantfile,Berksfile\}
 
 Optionally, you can configure the `Vagrantfile` to specify the project name or customize the installed packages or modules.
 
