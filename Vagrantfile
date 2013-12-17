@@ -4,6 +4,8 @@
 # General project settings
 #################################
 
+# NOTE: Remember to run "vagrant reload" after changing any of these
+
 # IP Address for the host only network, change it to anything you like
 # but please keep it within the IPv4 private network range
 ip_address = "172.22.22.22"
@@ -64,7 +66,7 @@ Vagrant.configure("2") do |config|
                 :name           => project_name,
 
                 # Name of MySQL database that should be created
-                :db_name        => "dbname",
+                :db_name        => project_name,
 
                 # Server name and alias(es) for Apache vhost
                 :server_name    => project_name + ".local",
